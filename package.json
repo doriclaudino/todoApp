@@ -1,7 +1,7 @@
 {
-  "name": "todoapp-react-egghead",
+  "name": "todoapp",
   "version": "1.0.0",
-  "description": "todoList on React, follow egghead",
+  "description": "todoList on React, following Dan Abramov @gaearon https://egghead.io/courses/getting-started-with-redux",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
@@ -10,7 +10,9 @@
     "react-dom": "16.4.0",
     "redux": "4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "react-scripts": "^1.1.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
