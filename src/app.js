@@ -121,7 +121,7 @@ const TodoList = ({
     </ul>
   );
 
-const AddTodo = (props, { store }) => {
+let AddTodo = ({ dispatch }) => {
   let input;
   return (
     <div>
@@ -131,7 +131,7 @@ const AddTodo = (props, { store }) => {
       />
       <button
         onClick={() => {
-          store.dispatch({
+          dispatch({
             type: 'ADD_TODO',
             id: nextTodoId++,
             text: input.value
@@ -144,10 +144,8 @@ const AddTodo = (props, { store }) => {
     </div>
   );
 }
-
-AddTodo.contextTypes = {
-  store: PropTypes.object
-}
+/** on this case, the connect dont need the arguments, because AddTodo use a simple implementation of dispatch action  */
+AddTodo = connect()(AddTodo);
 
 
 /******
@@ -249,14 +247,13 @@ const Link = ({
   );
 };
 
-const mapStateToProps = (state) => {
+const mapVisibleTodoListStateToProps = (state) => {
   return {
     todos : getVisibleTodos(state.todos,
       state.visibilityFilter)
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
+const mapVisibleTodoListDispatchToProps = (dispatch) => {
   return {
     onTodoClick : (id) => {
       dispatch({
@@ -266,10 +263,9 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
 const VisibleTodoList = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapVisibleTodoListStateToProps,
+  mapVisibleTodoListDispatchToProps
 )(TodoList);
 
 
