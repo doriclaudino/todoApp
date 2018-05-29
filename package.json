@@ -1,0 +1,20 @@
+{
+  "name": "todoapp-react-egghead",
+  "version": "1.0.0",
+  "description": "todoList on React, follow egghead",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "react-dom": "16.4.0",
+    "redux": "4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
