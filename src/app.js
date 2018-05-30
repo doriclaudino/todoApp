@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Component } from 'react'
 import { createStore } from 'redux'
 import { connect } from 'react-redux'
+import AddTodo from './components/AddTodo';
 
 /******
 todo reducer
@@ -50,14 +51,6 @@ const todos = (state = [], action) => {
   }
 };
 
-let nextTodoId = 0;
-const addTodo = (text) => {
-  return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-  }
-}
 const toggleTodo = (id) => {
   return {
     type: 'TOGGLE_TODO',
@@ -142,33 +135,6 @@ const TodoList = ({
       )}
     </ul>
   );
-
-let AddTodo = ({ dispatch }) => {
-  let input;
-  return (
-    <div>
-      <input type="text" ref={node => {
-        input = node
-      }}
-      />
-      <button
-        onClick={() => {
-          dispatch({
-            type: 'ADD_TODO',
-            id: nextTodoId++,
-            text: input.value
-          })
-          input.value = '';
-        }}
-      >
-        Add Todo
-     </button>
-    </div>
-  );
-}
-/** on this case, the connect dont need the arguments, because AddTodo use a simple implementation of dispatch action  */
-AddTodo = connect()(AddTodo);
-
 
 /******
 just pass the filter to the children
