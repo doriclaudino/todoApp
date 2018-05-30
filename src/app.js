@@ -50,6 +50,28 @@ const todos = (state = [], action) => {
   }
 };
 
+let nextTodoId = 0;
+const addTodo = (text) => {
+  return {
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    text
+  }
+}
+const toggleTodo = (id) => {
+  return {
+    type: 'TOGGLE_TODO',
+    id
+  }
+}
+const setVisibilityFilter = (filter) => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  }
+}
+
+
 /******
 filter reducer
 /******/
@@ -216,10 +238,7 @@ const mapFilterLinkDispatchToProps = (
 ) => {
   return {
     onClick: () => {
-      dispatch({
-        type: 'SET_VISIBILITY_FILTER',
-        filter: ownProps.filter
-      })
+      dispatch(setVisibilityFilter(ownProps.filter))
     }
   }
 }
@@ -238,10 +257,7 @@ const mapVisibleTodoListStateToProps = (state) => {
 const mapVisibleTodoListDispatchToProps = (dispatch) => {
   return {
     onTodoClick : (id) => {
-      dispatch({
-        type: 'TOGGLE_TODO',
-        id
-      })
+      dispatch(toggleTodo(id))
     }
   }
 }
@@ -270,8 +286,6 @@ Provider.childContextTypes = {
 /******
 global id
 /******/
-let nextTodoId = 0;
-
 const TodoApp = () =>
   (<div>
     <AddTodo />
