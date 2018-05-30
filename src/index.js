@@ -1,19 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './app';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import todoApp from './reducers';
+import TodoApp from './components/TodoApp';
 
-ReactDOM.render(
-  <App />,
+const store = createStore(todoApp);
+
+const hotRef = render(
+  <Provider store={store}>
+    <TodoApp />
+  </Provider>,
   document.getElementById('root')
 );
 
-
 if (module.hot) {
-  module.hot.accept('./app', () => {
-    const NextApp = require('./app').default
-    ReactDOM.render(
-      <NextApp />,
-      document.getElementById('root')
-    )
-  })
+  module.hot.accept(hotRef, () => ({
+    hotRef
+  }))
 }
