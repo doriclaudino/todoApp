@@ -5,6 +5,7 @@ import { Component } from 'react'
 import { createStore } from 'redux'
 import { connect } from 'react-redux'
 import AddTodo from './components/AddTodo';
+import Footer from './components/Footer'
 
 /******
 todo reducer
@@ -57,13 +58,6 @@ const toggleTodo = (id) => {
     id
   }
 }
-const setVisibilityFilter = (filter) => {
-  return {
-    type: 'SET_VISIBILITY_FILTER',
-    filter
-  }
-}
-
 
 /******
 filter reducer
@@ -135,84 +129,6 @@ const TodoList = ({
       )}
     </ul>
   );
-
-/******
-just pass the filter to the children
-/******/
-const Footer = () => {
-  return (
-    <p>
-      Show:
-    {' '}
-      <FilterLink
-        filter={'SHOW_ALL'}
-      >
-        All
-    </FilterLink>
-      {' '}
-      <FilterLink
-        filter={'SHOW_ACTIVE'}
-      >
-        Active
-    </FilterLink>
-      {' '}
-      <FilterLink
-        filter={'SHOW_COMPLETED'}
-      >
-        Completed
-    </FilterLink>
-    </p>
-  );
-}
-
-/******
-presentation component, or dump component
-/******/
-const Link = ({
-  active,
-  children,
-  onClick
-}) => {
-
-  /* span if current is clicked */
-  if (active) {
-    return (<span>{children}</span>)
-  }
-  return (<a href='#'
-    onClick={e => {
-      e.preventDefault();
-      onClick();
-    }}
-  >
-    {children}
-  </a>
-  );
-};
-
-
-const mapFilterLinkStateToProps = (
-  state,
-  ownProps
-) => {
-  return {
-    active: ownProps.filter === state.visibilityFilter
-  }
-}
-const mapFilterLinkDispatchToProps = (
-  dispatch,
-  ownProps
-) => {
-  return {
-    onClick: () => {
-      dispatch(setVisibilityFilter(ownProps.filter))
-    }
-  }
-}
-const FilterLink = connect(
-  mapFilterLinkStateToProps,
-  mapFilterLinkDispatchToProps
-)(Link);
-
 
 const mapVisibleTodoListStateToProps = (state) => {
   return {
