@@ -4,29 +4,23 @@ import FilterLink from './FilterLink';
 just pass the filter to the children
 /******/
 const Footer = () => {
-    return (
-      <p>
-        Show:
-      {' '}
-        <FilterLink
-          filter={'SHOW_ALL'}
-        >
-          All
+  return (
+    <p>
+      Show:
+      {" "}
+      <FilterLink filter="all">
+        All
       </FilterLink>
-        {' '}
-        <FilterLink
-          filter={'SHOW_ACTIVE'}
-        >
-          Active
+      {" "}
+      <FilterLink filter="active">
+        Active
       </FilterLink>
-        {' '}
-        <FilterLink
-          filter={'SHOW_COMPLETED'}
-        >
-          Completed
+      {" "}
+      <FilterLink filter="completed">
+        Completed
       </FilterLink>
-      </p>
-    );
-  }
+    </p>
+  );
+}
 
-  export default Footer;
+export default Footer;

@@ -1,13 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
 import TodoApp from './TodoApp';
+import PropTypes from 'prop-types';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-
-export const Root = ({ store }) => (
+const Root = ({ store }) => (
     <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path='/' component={TodoApp} />
-        </Router>
+        <BrowserRouter>
+            <Route path="/:filter?" component={TodoApp} />
+        </BrowserRouter>
     </Provider>
 );
+
+Root.propTypes = {
+    store: PropTypes.object.isRequired,
+};
+
+export default Root;
